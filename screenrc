@@ -1,0 +1,35 @@
+
+# enable the altscreen
+# for example in vim, it allows to scroll with the mouse without
+# "overflowing" on the terminal
+# also it doesn't "pollute" the terminal when you quit vim
+altscreen on
+
+# automatically detach the session if the terminal is closed
+autodetach on
+
+# larger command history
+defscrollback 10000
+
+# set the encoding of the windows to utf-8
+defutf8 on
+
+# disable the startup message
+startup_message off
+
+# allow to scroll
+termcapinfo xterm* ti@:te@
+
+# disable the annoying visual bell
+vbell off
+
+# status bar
+# %{= wk}: set the color to white on black
+# %S: screen session name
+# %-w: previous windows
+# %{= kw}: set the color to black on white
+# %n: current window number
+# %t: current window title
+# %{= wk}: set the color to white on black
+# %+w: next windows
+caption always "%{= wk}%S: %-w%{= kw}%n %t%{= wk}%+w"
