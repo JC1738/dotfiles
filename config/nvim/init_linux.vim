@@ -73,6 +73,7 @@ Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -123,7 +124,9 @@ if has('mouse')
 endif
 
 " Allow vim to set a custom font or color for a word
-syntax enable
+if !exists("g:syntax_on")
+    syntax enable
+endif
 
 " Set the leader button
 let mapleader = ','
@@ -141,14 +144,29 @@ nnoremap <space> zz
 " Colors
 "----------------------------------------------
 set background=dark
-colorscheme PaperColor
+colorscheme solarized
+let g:solarized_termcolors = 256
+let g:solarized_termtrans = 1
+
+"colorscheme PaperColor
 
 " Override the search highlight color with a combination that is easier to
 " read. The default PaperColor is dark green backgroun with black foreground.
 "
 " Reference:
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
+"highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
+
+
+"let g:PaperColor_Theme_Options = {
+"  \   'theme': {
+"  \     'default.dark': {
+"  \       'transparent_background': 1
+"  \     }
+"  \   }
+"  \ }
+
+"let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
 
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
