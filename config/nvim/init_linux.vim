@@ -74,12 +74,13 @@ Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+Plug 'felixhummel/setcolors.vim'
 
 call plug#end()
 
 "----------------------------------------------
-" General settings
-"----------------------------------------------
+" General settings ----------------------------------------------
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0 " fix funny cursor in linux
 set autoindent                    " take indent for new line from previous line
 set smartindent                   " enable smart indentation
@@ -107,6 +108,7 @@ set softtabstop=2
 set tabstop=2
 set title                         " let vim set the terminal title
 set updatetime=100                " redraw the status bar often
+set t_Co=256                      " color mode in ssh
 
 " neovim specific settings
 if has('nvim')
@@ -143,10 +145,16 @@ nnoremap <space> zz
 "----------------------------------------------
 " Colors
 "----------------------------------------------
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors = 256
-let g:solarized_termtrans = 1
+"set background=dark
+
+
+"VisualStudioDark
+"colorscheme VisualStudioDark
+"hi Normal guibg=NONE ctermbg=NONE
+
+"colorscheme solarized
+"let g:solarized_termcolors = 256
+"let g:solarized_termtrans = 1
 
 "colorscheme PaperColor
 
@@ -156,17 +164,6 @@ let g:solarized_termtrans = 1
 " Reference:
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 "highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
-
-
-"let g:PaperColor_Theme_Options = {
-"  \   'theme': {
-"  \     'default.dark': {
-"  \       'transparent_background': 1
-"  \     }
-"  \   }
-"  \ }
-
-"let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
 
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
