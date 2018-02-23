@@ -80,7 +80,8 @@ Plug 'felixhummel/setcolors.vim'
 call plug#end()
 
 "----------------------------------------------
-" General settings ----------------------------------------------
+" General settings
+"----------------------------------------------
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0 " fix funny cursor in linux
 set autoindent                    " take indent for new line from previous line
 set smartindent                   " enable smart indentation
@@ -145,25 +146,32 @@ nnoremap <space> zz
 "----------------------------------------------
 " Colors
 "----------------------------------------------
-"set background=dark
 
 
+"----------------------------------------------
 "VisualStudioDark
 "colorscheme VisualStudioDark
 "hi Normal guibg=NONE ctermbg=NONE
+"----------------------------------------------
 
+"----------------------------------------------
 "colorscheme solarized
+"set background=dark
 "let g:solarized_termcolors = 256
 "let g:solarized_termtrans = 1
+"----------------------------------------------
 
+
+"----------------------------------------------
 "colorscheme PaperColor
-
+"set background=dark
 " Override the search highlight color with a combination that is easier to
 " read. The default PaperColor is dark green backgroun with black foreground.
 "
 " Reference:
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 "highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
+"----------------------------------------------
 
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
