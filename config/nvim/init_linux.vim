@@ -41,6 +41,8 @@ Plug 'vim-scripts/ZoomWin'
 Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'powerline/powerline'
+Plug 'conradirwin/vim-bracketed-paste'
+Plug 'roxma/vim-tmux-clipboard'
 
 " Vim only plugins
 if !has('nvim')
@@ -88,7 +90,7 @@ set smartindent                   " enable smart indentation
 set autoread                      " reload file if the file changes on the disk
 set autowrite                     " write when switching buffers
 set autowriteall                  " write on :quit
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set colorcolumn=126               " highlight the 125th column as an indicator
 set completeopt-=preview          " remove the horrendous preview window
 set cursorline                    " highlight the current line for the cursor
@@ -142,6 +144,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Center the screen quickly
 nnoremap <space> zz
+
+"----------------------------------------------
+" Clipper
+"----------------------------------------------
 
 "----------------------------------------------
 " Colors
