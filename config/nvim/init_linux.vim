@@ -111,7 +111,6 @@ set softtabstop=2
 set tabstop=2
 set title                         " let vim set the terminal title
 set updatetime=100                " redraw the status bar often
-set t_Co=256                      " color mode in ssh
 
 " neovim specific settings
 if has('nvim')
@@ -152,7 +151,10 @@ nnoremap <space> zz
 "----------------------------------------------
 " Colors
 "----------------------------------------------
-
+"set termguicolors
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
+"set t_Co=256                      " color mode in ssh
 
 "----------------------------------------------
 "VisualStudioDark
