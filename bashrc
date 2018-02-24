@@ -171,6 +171,8 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-alias jc-linux="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux a"
+alias jc-linux-new="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 new -t work"
+alias jc-linux-attach="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 a"
+alias jc-linux-ssh="ssh -p 2200 jc@jc-linux.otcorp.opentable.com"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
