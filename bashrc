@@ -175,4 +175,29 @@ alias jc-linux-new="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 new 
 alias jc-linux-attach="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 a"
 alias jc-linux-ssh="ssh -p 2200 jc@jc-linux.otcorp.opentable.com"
 
+# FIND ALL
+function p(){
+        ps aux | grep -i $1 | grep -v grep
+}
+
+# KILL ALL
+function ka(){
+
+    cnt=$( p $1 | wc -l)  # total count of processes found
+    klevel=${2:-15}       # kill level, defaults to 15 if argument 2 is empty
+
+    echo -e "\nSearching for '$1' -- Found" $cnt "Running Processes .. "
+    p $1
+
+    echo -e '\nTerminating' $cnt 'processes .. '
+
+    ps aux  |  grep -i $1 |  grep -v grep   | awk '{print $2}' | xargs sudo kill -$klevel
+    echo -e "Done!\n"
+
+    echo "Running search again:"
+    p "$1"
+    echo -e "\n"
+}
+
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
