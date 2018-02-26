@@ -195,6 +195,7 @@ function ka(){
     echo -e "\n"
 }
 
+# Stick private information in private repo
 files=(bashrc_private)
 path="$HOME/Documents/git/dotfiles_private/"
 for file in ${files[@]}
