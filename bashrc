@@ -200,4 +200,9 @@ function ka(){
 }
 
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
+	if [ -e /etc/profile.d/vte.sh ]
+  then
+		source /etc/profile.d/vte.sh;
+	fi
+fi # Ubuntu Budgie END
