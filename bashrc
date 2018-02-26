@@ -199,6 +199,7 @@ function ka(){
     echo -e "\n"
 }
 
+alias linux-station="ssh jc@192.168.7.101"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 	if [ -e /etc/profile.d/vte.sh ]
