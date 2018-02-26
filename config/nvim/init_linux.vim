@@ -423,6 +423,7 @@ nnoremap <c-f> :Buffers<cr>
 nnoremap <c-g> :Commits<cr>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!vendor/*" --glob "!artifacts/*" --color "always" --type "go" '.shellescape(<q-args>), 0, <bang>0)
 
+command! -bang -nargs=* FindAny call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!vendor/*" --glob "!artifacts/*" --color "always" '.shellescape(<q-args>), 0, <bang>0)
 "----------------------------------------------
 " Plugin: 'majutsushi/tagbar'
 "----------------------------------------------
