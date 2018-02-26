@@ -171,10 +171,6 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-alias jc-linux-new="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 new -t work"
-alias jc-linux-attach="ssh -p 2200 jc@jc-linux.otcorp.opentable.com -t tmux -2 a"
-alias jc-linux-ssh="ssh -p 2200 jc@jc-linux.otcorp.opentable.com"
-
 # FIND ALL
 function p(){
         ps aux | grep -i $1 | grep -v grep
@@ -199,7 +195,17 @@ function ka(){
     echo -e "\n"
 }
 
-alias linux-station="ssh jc@192.168.7.101"
+files=(bashrc_private)
+path="$HOME/Documents/git/dotfiles_private/"
+for file in ${files[@]}
+do
+    file_to_load=$path$file
+    if [ -f "$file_to_load" ];
+    then
+        . $file_to_load
+        echo "loaded $file_to_load"
+    fi
+done
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 	if [ -e /etc/profile.d/vte.sh ]
