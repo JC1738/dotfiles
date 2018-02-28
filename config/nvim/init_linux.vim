@@ -618,7 +618,6 @@ au FileType go set tabstop=4
 au FileType go nmap <F1> :GoInfo<cr>
 au FileType go nmap <F4> :GoReferrers<cr>
 au Filetype go nmap <F7> :GoImplements<cr>
-au FileType go nmap <F8> :GoMetaLinter<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F10> :GoTest -short<cr>
 au Filetype go nmap <F11> :GoDescribe<cr>
@@ -638,7 +637,7 @@ au FileType go nmap <leader>gDv <Plug>(go-doc-vertical)
 au FileType go nmap <leader>gor <Plug>(go-run)
 au FileType go nmap <leader>gf :GoFmt<cr>
 au FileType go nmap <leader>t :GoTestFunc<cr>
-
+au FileType go nmap <leader>gl :GoMetaLinter<cr>
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
