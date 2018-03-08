@@ -44,6 +44,7 @@ Plug 'powerline/powerline'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'ervandew/supertab'
+Plug 'janko-m/vim-test'
 
 " Vim only plugins
 if !has('nvim')
