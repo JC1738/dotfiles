@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+#HISTSIZE=1000
+#HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -136,7 +136,7 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export GOROOT=/usr/lib/go-1.9
+export GOROOT=/usr/lib/go-1.10
 export PATH=$PATH:$GOROOT/bin
 
 export VTE_VERSION="100"
@@ -194,6 +194,9 @@ function ka(){
     p "$1"
     echo -e "\n"
 }
+
+#divvy like functionality on linux
+alias ration="python /home/jc/.local/lib/python2.7/site-packages/ration/ration.py &"
 
 # Stick private information in private repo
 files=(bashrc_private)

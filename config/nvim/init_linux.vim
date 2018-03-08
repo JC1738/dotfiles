@@ -112,6 +112,8 @@ set tabstop=2
 set title                         " let vim set the terminal title
 set updatetime=100                " redraw the status bar often
 set noshowmode
+set shortmess+=c
+
 
 " neovim specific settings
 if has('nvim')
