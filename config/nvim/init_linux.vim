@@ -111,8 +111,8 @@ set softtabstop=2
 set tabstop=2
 set title                         " let vim set the terminal title
 set updatetime=100                " redraw the status bar often
-set noshowmode
-set shortmess+=c
+set noshowmode                    " get rid of INSERT so function signature shwos correct
+set shortmess+=c                  " remove the match 1 of X
 
 
 " neovim specific settings
