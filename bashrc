@@ -149,6 +149,7 @@ export PATH=$PATH:/home/jc/Apps/liquibase-3.4.2
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Need to have rg installed, will allow <ctrl-p> and fuzzy matchin to work in shell
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bind -x '"\C-p": vim $(fzf);'
