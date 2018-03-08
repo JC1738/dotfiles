@@ -43,6 +43,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'powerline/powerline'
 Plug 'conradirwin/vim-bracketed-paste'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'ervandew/supertab'
 
 " Vim only plugins
 if !has('nvim')
