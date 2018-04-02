@@ -136,7 +136,7 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export GOROOT=/usr/lib/go-1.10
+export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
 export VTE_VERSION="100"
@@ -145,6 +145,8 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOPATH:$GOBIN:$PATH
 export PATH=$PATH:/home/jc/Apps/GoLand-2017.3.2/bin
 export PATH=$PATH:/home/jc/Apps/liquibase-3.4.2
+export PATH=$PATH:/home/jc/Documents/git/diff-so-fancy
+
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
