@@ -136,7 +136,7 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export GOROOT=/usr/lib/go-1.10
+export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
 export VTE_VERSION="100"
