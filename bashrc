@@ -220,3 +220,5 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
