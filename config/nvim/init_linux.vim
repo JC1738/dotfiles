@@ -600,8 +600,8 @@ let g:multi_cursor_skip_key='<C-b>'
 " Plugin: zchee/deoplete-go
 "----------------------------------------------
 " Enable completing of go pointers
-AutocmdFT go call deoplete#custom#set('go', 'matchers', ['matcher_full_fuzzy'])
-AutocmdFT go call deoplete#custom#set('go', 'sorters', [])
+AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'])
+AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
 AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-4.0/lib/libclang-4.0.so.1")
