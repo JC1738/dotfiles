@@ -74,6 +74,7 @@ Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
+Plug 'killphi/vim-legend'                      " Mark up code coverage
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -251,6 +252,13 @@ cnoreabbrev Qall qall
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
+
+
+"----------------------------------------------
+" Plugin: killphi/vim-legend
+"----------------------------------------------
+let g:legend_active_auto = 1
+
 
 "----------------------------------------------
 " Auto Pair
