@@ -59,6 +59,7 @@ Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
+Plug 'vim-syntastic/syntastic'
 Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
@@ -653,6 +654,12 @@ au FileType go nmap <leader>gor <Plug>(go-run)
 au FileType go nmap <leader>gf :GoFmt<cr>
 au FileType go nmap <leader>t :GoTestFunc<cr>
 au FileType go nmap <leader>gl :GoMetaLinter<cr>
+
+
+"inoremap <Leader>a <Esc>:Rg <C-R><C-W><CR>
+"nnoremap <Leader>a :Rg <C-R><C-W><CR>
+
+
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -675,6 +682,35 @@ let g:go_info_mode = "guru"
 
 " Set neosnippet as snippet engine
 let g:go_snippet_engine = "neosnippet"
+
+
+
+" First update vim-go and syntastic to latest versions.
+" Then install/update go tools using :GoInstallBinaries and :GoUpdateBinaries
+
+" Set default go build tags... Update ad-hoc with :GoBuildTags <new list>
+let g:go_build_tags = "smoke integration"
+
+" Get Syntastic to use build tags...
+let g:syntastic_go_go_test_args = '-tags="smoke integration"'
+let g:syntastic_go_go_build_args = '-tags="smoke integration"'
+
+" Set go guru scope to current Git repo root... Update ad-hoc with :GoGuruScope if needing to include code outside of repo root.
+let root_import_path = system("ABS=$(git rev-parse --show-toplevel); echo \${ABS#$GOPATH/src/}")
+let g:go_guru_scope = [root_import_path]
+
+" Other settings I find useful for go/syntastic...
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['go', 'errcheck', 'golint', 'govet', ]
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+
+
+
 
 " Enable syntax highlighting per default
 let g:go_highlight_types = 1
