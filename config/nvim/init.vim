@@ -18,7 +18,6 @@ Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'  " Default snippets for many languages
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/calendar.vim'
@@ -40,11 +39,6 @@ Plug 'dkprice/vim-easygrep'
 Plug 'vim-scripts/ZoomWin'
 Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'francoiscabrol/ranger.vim'
-Plug 'powerline/powerline'
-Plug 'conradirwin/vim-bracketed-paste'
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'ervandew/supertab'
-Plug 'janko-m/vim-test'
 
 " Vim only plugins
 if !has('nvim')
@@ -59,7 +53,6 @@ Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
-Plug 'vim-syntastic/syntastic'
 Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
@@ -75,13 +68,9 @@ Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
-Plug 'killphi/vim-legend'                      " Mark up code coverage
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'altercation/vim-colors-solarized'
-Plug 'flazz/vim-colorschemes'
-Plug 'felixhummel/setcolors.vim'
 
 call plug#end()
 
@@ -94,7 +83,7 @@ set smartindent                   " enable smart indentation
 set autoread                      " reload file if the file changes on the disk
 set autowrite                     " write when switching buffers
 set autowriteall                  " write on :quit
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set colorcolumn=126               " highlight the 125th column as an indicator
 set completeopt-=preview          " remove the horrendous preview window
 set cursorline                    " highlight the current line for the cursor
@@ -115,9 +104,6 @@ set softtabstop=2
 set tabstop=2
 set title                         " let vim set the terminal title
 set updatetime=100                " redraw the status bar often
-set noshowmode                    " get rid of INSERT so function signature shwos correct
-set shortmess+=c                  " remove the match 1 of X
-
 
 " neovim specific settings
 if has('nvim')
@@ -135,9 +121,7 @@ if has('mouse')
 endif
 
 " Allow vim to set a custom font or color for a word
-if !exists("g:syntax_on")
-    syntax enable
-endif
+syntax enable
 
 " Set the leader button
 let mapleader = ','
@@ -152,43 +136,17 @@ autocmd BufWritePre * :%s/\s\+$//e
 nnoremap <space> zz
 
 "----------------------------------------------
-" Clipper
-"----------------------------------------------
-
-"----------------------------------------------
 " Colors
 "----------------------------------------------
-"set termguicolors
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
-"set t_Co=256                      " color mode in ssh
+set background=dark
+colorscheme PaperColor
 
-colorscheme triplejelly
-
-"----------------------------------------------
-"VisualStudioDark
-"colorscheme VisualStudioDark
-"hi Normal guibg=NONE ctermbg=NONE
-"----------------------------------------------
-
-"----------------------------------------------
-"colorscheme solarized
-"set background=dark
-"let g:solarized_termcolors = 256
-"let g:solarized_termtrans = 1
-"----------------------------------------------
-
-
-"----------------------------------------------
-"colorscheme PaperColor
-"set background=dark
 " Override the search highlight color with a combination that is easier to
 " read. The default PaperColor is dark green backgroun with black foreground.
 "
 " Reference:
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
-"highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
-"----------------------------------------------
+highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
 
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
@@ -253,13 +211,6 @@ cnoreabbrev Qall qall
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
-
-
-"----------------------------------------------
-" Plugin: killphi/vim-legend
-"----------------------------------------------
-let g:legend_active_auto = 1
-
 
 "----------------------------------------------
 " Auto Pair
@@ -363,7 +314,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 
 " Enable powerline fonts.
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " Explicitly define some symbols that did not work well for me in Linux.
 if !exists('g:airline_symbols')
@@ -434,12 +385,7 @@ let g:calendar_view = "days"                  " Set days as the default view
 " Plugin: 'junegunn/fzf.vim'
 "----------------------------------------------
 nnoremap <c-p> :FZF<cr>
-nnoremap <c-w> :Windows<cr>
-nnoremap <c-f> :Buffers<cr>
-nnoremap <c-g> :Commits<cr>
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!vendor/*" --glob "!artifacts/*" --color "always" --type "go" '.shellescape(<q-args>), 0, <bang>0)
 
-command! -bang -nargs=* FindAny call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!vendor/*" --glob "!artifacts/*" --color "always" '.shellescape(<q-args>), 0, <bang>0)
 "----------------------------------------------
 " Plugin: 'majutsushi/tagbar'
 "----------------------------------------------
@@ -609,11 +555,11 @@ let g:multi_cursor_skip_key='<C-b>'
 " Plugin: zchee/deoplete-go
 "----------------------------------------------
 " Enable completing of go pointers
-AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'])
-AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
+AutocmdFT go call deoplete#custom#set('go', 'matchers', ['matcher_full_fuzzy'])
+AutocmdFT go call deoplete#custom#set('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
-AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-6.0/lib/libclang-6.0.so.1")
+AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-4.0/lib/libclang-4.0.so.1")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")
@@ -634,6 +580,7 @@ au FileType go set tabstop=4
 au FileType go nmap <F1> :GoInfo<cr>
 au FileType go nmap <F4> :GoReferrers<cr>
 au Filetype go nmap <F7> :GoImplements<cr>
+au FileType go nmap <F8> :GoMetaLinter<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F10> :GoTest -short<cr>
 au Filetype go nmap <F11> :GoDescribe<cr>
@@ -653,12 +600,6 @@ au FileType go nmap <leader>gDv <Plug>(go-doc-vertical)
 au FileType go nmap <leader>gor <Plug>(go-run)
 au FileType go nmap <leader>gf :GoFmt<cr>
 au FileType go nmap <leader>t :GoTestFunc<cr>
-au FileType go nmap <leader>gl :GoMetaLinter<cr>
-
-
-"inoremap <Leader>a <Esc>:Rg <C-R><C-W><CR>
-"nnoremap <Leader>a :Rg <C-R><C-W><CR>
-
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -682,35 +623,6 @@ let g:go_info_mode = "guru"
 
 " Set neosnippet as snippet engine
 let g:go_snippet_engine = "neosnippet"
-
-
-
-" First update vim-go and syntastic to latest versions.
-" Then install/update go tools using :GoInstallBinaries and :GoUpdateBinaries
-
-" Set default go build tags... Update ad-hoc with :GoBuildTags <new list>
-let g:go_build_tags = "smoke integration"
-
-" Get Syntastic to use build tags...
-let g:syntastic_go_go_test_args = '-tags="smoke integration"'
-let g:syntastic_go_go_build_args = '-tags="smoke integration"'
-
-" Set go guru scope to current Git repo root... Update ad-hoc with :GoGuruScope if needing to include code outside of repo root.
-let root_import_path = system("ABS=$(git rev-parse --show-toplevel); echo \${ABS#$GOPATH/src/}")
-let g:go_guru_scope = [root_import_path]
-
-" Other settings I find useful for go/syntastic...
-let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go', 'errcheck', 'golint', 'govet', ]
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
-
-
-
 
 " Enable syntax highlighting per default
 let g:go_highlight_types = 1
@@ -957,77 +869,3 @@ au FileType yaml set expandtab
 au FileType yaml set shiftwidth=2
 au FileType yaml set softtabstop=2
 au FileType yaml set tabstop=2
-
-
-" BufOnly.vim  -  Delete all the buffers except the current/named buffer.
-"
-" Copyright November 2003 by Christian J. Robinson <infynity@onewest.net>
-"
-" Distributed under the terms of the Vim license.  See ":help license".
-"
-" Usage:
-"
-" :Bonly / :BOnly / :Bufonly / :BufOnly [buffer]
-"
-" Without any arguments the current buffer is kept.  With an argument the
-" buffer name/number supplied is kept.
-
-command! -nargs=? -complete=buffer -bang Bonly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BOnly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang Bufonly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BufOnly
-    \ :call BufOnly('<args>', '<bang>')
-
-function! BufOnly(buffer, bang)
-	if a:buffer == ''
-		" No buffer provided, use the current buffer.
-		let buffer = bufnr('%')
-	elseif (a:buffer + 0) > 0
-		" A buffer number was provided.
-		let buffer = bufnr(a:buffer + 0)
-	else
-		" A buffer name was provided.
-		let buffer = bufnr(a:buffer)
-	endif
-
-	if buffer == -1
-		echohl ErrorMsg
-		echomsg "No matching buffer for" a:buffer
-		echohl None
-		return
-	endif
-
-	let last_buffer = bufnr('$')
-
-	let delete_count = 0
-	let n = 1
-	while n <= last_buffer
-		if n != buffer && buflisted(n)
-			if a:bang == '' && getbufvar(n, '&modified')
-				echohl ErrorMsg
-				echomsg 'No write since last change for buffer'
-							\ n '(add ! to override)'
-				echohl None
-			else
-				silent exe 'bdel' . a:bang . ' ' . n
-				if ! buflisted(n)
-					let delete_count = delete_count+1
-				endif
-			endif
-		endif
-		let n = n+1
-	endwhile
-
-	if delete_count == 1
-		echomsg delete_count "buffer deleted"
-	elseif delete_count > 1
-		echomsg delete_count "buffers deleted"
-	endif
-
-endfunction
-
-nnoremap <c-q> :Bonly<cr>
-
