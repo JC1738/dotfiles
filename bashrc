@@ -201,9 +201,9 @@ function ka(){
 #divvy like functionality on linux
 alias ration="python /home/jc/.local/lib/python2.7/site-packages/ration/ration.py &"
 
-alias rm='rmtrash'
-alias rmdir='rmdirtrash'
-alias sudo='sudo '
+#alias rm='rmtrash'
+#alias rmdir='rmdirtrash'
+#alias sudo='sudo '
 
 # Stick private information in private repo
 files=(bashrc_private)
@@ -226,3 +226,4 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 fi # Ubuntu Budgie END
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
