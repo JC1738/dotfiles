@@ -145,6 +145,8 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOPATH:$GOBIN:$PATH
 export PATH=$PATH:/home/jc/Apps/GoLand-2017.3.2/bin
 export PATH=$PATH:/home/jc/Apps/liquibase-3.4.2
+export PATH=$PATH:/home/jc/Documents/git/diff-so-fancy
+
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -199,6 +201,10 @@ function ka(){
 #divvy like functionality on linux
 alias ration="python /home/jc/.local/lib/python2.7/site-packages/ration/ration.py &"
 
+alias rm='rmtrash'
+alias rmdir='rmdirtrash'
+alias sudo='sudo '
+
 # Stick private information in private repo
 files=(bashrc_private)
 path="$HOME/Documents/git/dotfiles_private/"
@@ -218,3 +224,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
