@@ -7,6 +7,17 @@
 "----------------------------------------------
 call plug#begin('~/.vim/plugged')
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+
 " Dependencies
 Plug 'Shougo/neocomplcache'        " Depenency for Shougo/neosnippet
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
@@ -45,6 +56,8 @@ Plug 'conradirwin/vim-bracketed-paste'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'ervandew/supertab'
 Plug 'janko-m/vim-test'
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
 
 " Vim only plugins
 if !has('nvim')
@@ -613,7 +626,7 @@ AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'
 AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
-AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-6.0/lib/libclang-6.0.so.1")
+AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-4.0/lib/libclang-4.0.so.1")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")
