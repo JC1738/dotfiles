@@ -89,6 +89,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 Plug 'killphi/vim-legend'                      " Mark up code coverage
+Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -853,6 +854,14 @@ au FileType json set expandtab
 au FileType json set shiftwidth=2
 au FileType json set softtabstop=2
 au FileType json set tabstop=2
+
+"----------------------------------------------
+" Language: groovy
+"----------------------------------------------
+au FileType groovy set expandtab
+au FileType groovy set shiftwidth=2
+au FileType groovy set softtabstop=2
+au FileType groovy set tabstop=2
 
 "----------------------------------------------
 " Language: LESS
