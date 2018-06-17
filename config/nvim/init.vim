@@ -855,6 +855,14 @@ au FileType json set shiftwidth=2
 au FileType json set softtabstop=2
 au FileType json set tabstop=2
 
+
+" mark Jenkinsfile as groovy filetype
+au BufReadPost Jenkinsfile set syntax=groovy
+au BufReadPost Jenkinsfile set expandtab
+au BufReadPost Jenkinsfile set shiftwidth=2
+au BufReadPost Jenkinsfile set softtabstop=2
+au BufReadPost Jenkinsfile set tabstop=2
+
 "----------------------------------------------
 " Language: groovy
 "----------------------------------------------
