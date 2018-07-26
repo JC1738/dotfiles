@@ -212,7 +212,7 @@ map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
 " Indenting  http://vim.wikia.com/wiki/Fix_indentation
 "----------------------------------------------
 
-map <F7> mzgg=G`z
+map <F8> mzgg=G`z
 
 "----------------------------------------------
 " Searching
