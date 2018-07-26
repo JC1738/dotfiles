@@ -207,6 +207,13 @@ colorscheme triplejelly
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
 
+
+"----------------------------------------------
+" Indenting  http://vim.wikia.com/wiki/Fix_indentation
+"----------------------------------------------
+
+map <F7> mzgg=G`z
+
 "----------------------------------------------
 " Searching
 "----------------------------------------------
@@ -886,6 +893,12 @@ au FileType make set noexpandtab
 au FileType make set shiftwidth=2
 au FileType make set softtabstop=2
 au FileType make set tabstop=2
+
+au BufReadPost Makefile set syntax=make
+au BufReadPost Makefile set noexpandtab
+au BufReadPost Makefile set shiftwidth=2
+au BufReadPost Makefile set softtabstop=2
+au BufReadPost Makefile set tabstop=2
 
 "----------------------------------------------
 " Language: Markdown
