@@ -7,6 +7,17 @@
 "----------------------------------------------
 call plug#begin('~/.vim/plugged')
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+
 " Dependencies
 Plug 'Shougo/neocomplcache'        " Depenency for Shougo/neosnippet
 Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdown
@@ -45,6 +56,8 @@ Plug 'conradirwin/vim-bracketed-paste'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'ervandew/supertab'
 Plug 'janko-m/vim-test'
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
 
 " Vim only plugins
 if !has('nvim')
@@ -76,6 +89,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 Plug 'killphi/vim-legend'                      " Mark up code coverage
+Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -192,6 +206,13 @@ colorscheme triplejelly
 
 " Toggle background with <leader>bg
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
+
+
+"----------------------------------------------
+" Indenting  http://vim.wikia.com/wiki/Fix_indentation
+"----------------------------------------------
+
+map <F12> mzgg=G`z
 
 "----------------------------------------------
 " Searching
@@ -613,7 +634,7 @@ AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'
 AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
-AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-6.0/lib/libclang-6.0.so.1")
+AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-4.0/lib/libclang-4.0.so.1")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")
@@ -841,6 +862,22 @@ au FileType json set shiftwidth=2
 au FileType json set softtabstop=2
 au FileType json set tabstop=2
 
+
+" mark Jenkinsfile as groovy filetype
+au BufReadPost Jenkinsfile set syntax=groovy
+au BufReadPost Jenkinsfile set expandtab
+au BufReadPost Jenkinsfile set shiftwidth=2
+au BufReadPost Jenkinsfile set softtabstop=2
+au BufReadPost Jenkinsfile set tabstop=2
+
+"----------------------------------------------
+" Language: groovy
+"----------------------------------------------
+au FileType groovy set expandtab
+au FileType groovy set shiftwidth=2
+au FileType groovy set softtabstop=2
+au FileType groovy set tabstop=2
+
 "----------------------------------------------
 " Language: LESS
 "----------------------------------------------
@@ -856,6 +893,12 @@ au FileType make set noexpandtab
 au FileType make set shiftwidth=2
 au FileType make set softtabstop=2
 au FileType make set tabstop=2
+
+au BufReadPost Makefile set syntax=make
+au BufReadPost Makefile set noexpandtab
+au BufReadPost Makefile set shiftwidth=2
+au BufReadPost Makefile set softtabstop=2
+au BufReadPost Makefile set tabstop=2
 
 "----------------------------------------------
 " Language: Markdown

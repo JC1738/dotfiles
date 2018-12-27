@@ -172,7 +172,6 @@ exec --no-startup-id albert
 exec --no-startup-id terminator 'workspace 1; exec terminator'
 exec --no-startup-id firefox
 exec --no-startup-id i3-msg 'workspace 2; exec google-chrome'
-exec --no-startup-id hipchat4
 exec --no-startup-id padlock 'workspace 3; exec /home/jc/Downloads/padlock-2.6.2-x86_64.AppImage'
 exec --no-startup-id slack 'workspace 3; exec slack'
 
