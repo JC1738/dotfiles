@@ -74,6 +74,9 @@ Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
 Plug 'vim-syntastic/syntastic'
 Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
+Plug 'tpope/vim-rails'                         " Rails
+Plug 'lucapette/vim-ruby-doc'                  " Rails and Ruby Doc
+Plug 'ecomba/vim-ruby-refactoring'             " Ruby refactor
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
 Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
