@@ -198,31 +198,42 @@ alias sudo='sudo '
 # git diff
 export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
 
-# mac
-files=(bashrc_mac)
-path="$HOME/Documents/git/dotfiles/mac/"
-for file in ${files[@]}
-do
-    file_to_load=$path$file
-    if [ -f "$file_to_load" ];
-    then
-        . $file_to_load
-        echo "loaded $file_to_load"
-    fi
-done
 
-# linux
-files=(bashrc_linux)
-path="$HOME/Documents/git/dotfiles/linux/"
-for file in ${files[@]}
-do
-    file_to_load=$path$file
-    if [ -f "$file_to_load" ];
-    then
+if [ "$(uname)" == "Darwin" ]; then
+    # Do something under Mac OS X platform
+		export MYOS=Mac
+
+		files=(bashrc_mac)
+		path="$HOME/Documents/git/dotfiles/mac/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
         . $file_to_load
         echo "loaded $file_to_load"
-    fi
-done
+			fi
+		done
+
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+		export MYOS=Linux
+
+		files=(bashrc_linux)
+		path="$HOME/Documents/git/dotfiles/linux/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+fi
+
 
 # Stick private information in private rep
 files=(bashrc_private)
