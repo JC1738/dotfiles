@@ -198,6 +198,11 @@ alias sudo='sudo '
 # git diff
 export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 
 if [ "$(uname)" == "Darwin" ]; then
     # Do something under Mac OS X platform
@@ -235,7 +240,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 fi
 
 
-# Stick private information in private rep
+# Stick private information in private repo
 files=(bashrc_private)
 path="$HOME/Documents/git/dotfiles_private/"
 for file in ${files[@]}
@@ -248,13 +253,10 @@ do
     fi
 done
 
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 	if [ -e /etc/profile.d/vte.sh ]
   then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
