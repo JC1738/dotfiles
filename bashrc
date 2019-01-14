@@ -140,7 +140,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export VTE_VERSION="100"
 
 
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Need to have rg installed, will allow <ctrl-p> and fuzzy matchin to work in shell
@@ -241,7 +240,7 @@ fi
 
 
 # Stick private information in private repo
-files=(bashrc_private)
+files=(bashrc_private ssh_agentrc)
 path="$HOME/Documents/git/dotfiles_private/"
 for file in ${files[@]}
 do
