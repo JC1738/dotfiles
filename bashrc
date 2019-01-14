@@ -136,16 +136,8 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin
 
 export VTE_VERSION="100"
-export GOPATH=/home/jc/go
-export GOBIN=$GOPATH/bin
-export PATH=$GOPATH:$GOBIN:$PATH
-export PATH=$PATH:/home/jc/Apps/GoLand-2017.3.2/bin
-export PATH=$PATH:/home/jc/Apps/liquibase-3.4.2
-export PATH=$PATH:/home/jc/Documents/git/diff-so-fancy
 
 
 
@@ -198,12 +190,55 @@ function ka(){
     echo -e "\n"
 }
 
-#divvy like functionality on linux
-alias ration="python /home/jc/.local/lib/python2.7/site-packages/ration/ration.py &"
-
 alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 alias sudo='sudo '
+
+
+# git diff
+export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+if [ "$(uname)" == "Darwin" ]; then
+    # Do something under Mac OS X platform
+		export MYOS=Mac
+
+		files=(bashrc_mac)
+		path="$HOME/Documents/git/dotfiles/mac/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+		export MYOS=Linux
+
+		files=(bashrc_linux)
+		path="$HOME/Documents/git/dotfiles/linux/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+fi
+
 
 # Stick private information in private repo
 files=(bashrc_private)
@@ -218,13 +253,10 @@ do
     fi
 done
 
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 	if [ -e /etc/profile.d/vte.sh ]
   then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
