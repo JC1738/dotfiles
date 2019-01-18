@@ -6,6 +6,12 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# colors
+
+
+#export LSCOLORS="EHfxcxdxBxegecabagacad"
+alias ls='ls -G'
+
 
 # OS
 export OS_LOADED=MAC
