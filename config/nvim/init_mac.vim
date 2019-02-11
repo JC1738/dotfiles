@@ -93,6 +93,7 @@ Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 Plug 'killphi/vim-legend'                      " Mark up code coverage
 Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
+Plug 'python-mode/python-mode', { 'branch': 'develop' } " Python
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -283,6 +284,14 @@ vnoremap <leader>p "_dP
 " Plugin: killphi/vim-legend
 "----------------------------------------------
 let g:legend_active_auto = 1
+
+"----------------------------------------------
+" Plugin: pythonmode
+"----------------------------------------------
+let g:pymode_python = 'python3'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_lint_cwindow = 1
+let g:pymode_lint_on_fly = 1
 
 
 "----------------------------------------------
