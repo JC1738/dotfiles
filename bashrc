@@ -158,7 +158,7 @@ function sk() {
 
 # powerline-go for commmand prompt
 function _update_ps1() {
-    PS1="$(~/go/bin/powerline-go -newline -colorize-hostname -error $?)"
+    PS1="$(~/go/bin/powerline-go -shorten-gke-names -newline -colorize-hostname -modules nix-shell,venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,vgo,kube -error $?)"
 }
 
 if [ "$TERM" != "linux" ]; then
