@@ -10,6 +10,17 @@ export PATH=$PATH:$HOME/Apps/liquibase-3.4.2
 
 export PATH=$PATH:$HOME/.local/bin
 
+# homebrew
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# brew install gcc
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib/pkgconfig"
+
+
+
 # OS
 export OS_LOADED=LINUX
 

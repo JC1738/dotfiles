@@ -140,7 +140,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export VTE_VERSION="100"
 
 
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Need to have rg installed, will allow <ctrl-p> and fuzzy matchin to work in shell
@@ -159,7 +158,7 @@ function sk() {
 
 # powerline-go for commmand prompt
 function _update_ps1() {
-    PS1="$(~/go/bin/powerline-go -newline -colorize-hostname -error $?)"
+    PS1="$(~/go/bin/powerline-go -shorten-gke-names -newline -colorize-hostname -modules nix-shell,venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root,vgo,kube -error $?)"
 }
 
 if [ "$TERM" != "linux" ]; then
@@ -241,7 +240,7 @@ fi
 
 
 # Stick private information in private repo
-files=(bashrc_private)
+files=(bashrc_private ssh_agentrc)
 path="$HOME/Documents/git/dotfiles_private/"
 for file in ${files[@]}
 do
