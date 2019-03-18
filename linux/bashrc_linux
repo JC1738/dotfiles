@@ -8,6 +8,8 @@ export PATH=$GOPATH:$GOBIN:$PATH
 export PATH=$PATH:$HOME/Apps/GoLand-2017.3.2/bin
 export PATH=$PATH:$HOME/Apps/liquibase-3.4.2
 
+export PATH=$PATH:$HOME/.local/bin
+
 # OS
 export OS_LOADED=LINUX
 
