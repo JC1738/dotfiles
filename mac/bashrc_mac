@@ -6,6 +6,9 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+# python paths
+export PATH=$PATH:/Users/jc/Library/Python/3.7/bin
+
 # colors
 alias ls='ls -G'
 

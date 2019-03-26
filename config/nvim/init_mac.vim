@@ -93,6 +93,7 @@ Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 Plug 'killphi/vim-legend'                      " Mark up code coverage
 Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
+"Plug 'valloric/youcompleteme'                  " Auto complete recommended for python
 Plug 'python-mode/python-mode', { 'branch': 'develop' } " Python
 
 " Colorschemes
@@ -292,6 +293,18 @@ let g:pymode_python = 'python3'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_on_fly = 1
+
+
+"----------------------------------------------
+" Plugin: youcompleteme
+"----------------------------------------------
+"let g:ycm_python_interpreter_path = ''
+"let g:ycm_python_sys_path = []
+"let g:ycm_extra_conf_vim_data = [
+"  \  'g:ycm_python_interpreter_path',
+"  \  'g:ycm_python_sys_path'
+"  \]
+"let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 
 
 "----------------------------------------------
