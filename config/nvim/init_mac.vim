@@ -95,6 +95,7 @@ Plug 'killphi/vim-legend'                      " Mark up code coverage
 Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
 "Plug 'valloric/youcompleteme'                  " Auto complete recommended for python
 Plug 'python-mode/python-mode', { 'branch': 'develop' } " Python
+Plug 'tmhedberg/SimpylFold'                    " Folding for python
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -168,7 +169,7 @@ autocmd BufLeave * silent! :wa
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Center the screen quickly
-nnoremap <space> zz
+nnoremap <space> za
 
 "----------------------------------------------
 " Clipper
@@ -526,10 +527,17 @@ let g:tagbar_type_go = {
 " Plugin: plasticboy/vim-markdown
 "----------------------------------------------
 " Disable folding
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled = 0
 
 " Auto shrink the TOC, so that it won't take up 50% of the screen
 let g:vim_markdown_toc_autofit = 1
+
+"----------------------------------------------
+" Plugin: 'tmhedberg/SimpylFold'
+"----------------------------------------------
+set foldmethod=indent
+set foldlevel=99
+
 
 "----------------------------------------------
 " Plugin: rbgrouleff/bclose.vim
