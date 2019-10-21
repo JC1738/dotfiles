@@ -76,6 +76,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 PROMPT=$PROMPT'$(kube_ps1) '
 
+
+#kubeoff by default, turn on by kubeon
+KUBE_PS1_ENABLED=false
+
 # FIND ALL
 function p(){
         ps aux | grep -i $1 | grep -v grep
