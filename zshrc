@@ -68,11 +68,37 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git node bundler osx rake ruby python golang tmux zsh-navigation-tools)
+plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
+PROMPT=$PROMPT'$(kube_ps1) '
+
+# FIND ALL
+function p(){
+        ps aux | grep -i $1 | grep -v grep
+}
+
+# KILL ALL
+function ka(){
+
+    cnt=$( p $1 | wc -l)  # total count of processes found
+    klevel=${2:-15}       # kill level, defaults to 15 if argument 2 is empty
+
+    echo -e "\nSearching for '$1' -- Found" $cnt "Running Processes .. "
+    p $1
+
+    echo -e '\nTerminating' $cnt 'processes .. '
+
+    ps aux  |  grep -i $1 |  grep -v grep   | awk '{print $2}' | xargs sudo kill -$klevel
+    echo -e "Done!\n"
+
+    echo "Running search again:"
+    p "$1"
+    echo -e "\n"
+}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
