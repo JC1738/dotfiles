@@ -104,6 +104,25 @@ function ka(){
     echo -e "\n"
 }
 
+export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
+export PATH=$PATH:~/.kube/plugins/jordanwilson230
+
+
+# Stick private information in private repo
+files=(bashrc_private)
+pathof="$HOME/Documents/git/dotfiles_private/"
+for file in ${files[@]}
+do
+    file_to_load=$pathof$file
+    if [ -f "$file_to_load" ];
+    then
+        #. $file_to_load
+        [[ -e $file_to_load ]] && emulate sh -c 'source $file_to_load'
+        echo "loaded $file_to_load"
+    fi
+done
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -127,3 +146,5 @@ function ka(){
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
