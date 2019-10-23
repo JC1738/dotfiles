@@ -268,3 +268,6 @@ if [ -f '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/path.bash.inc' ]; t
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/completion.bash.inc' ]; then . '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/completion.bash.inc'; fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
