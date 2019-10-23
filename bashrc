@@ -197,9 +197,6 @@ alias sudo='sudo '
 # git diff
 export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 
@@ -259,9 +256,6 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/path.bash.inc' ]; then . '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/path.bash.inc'; fi
