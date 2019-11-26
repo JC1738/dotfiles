@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools zsh_reload)
+plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,6 +145,8 @@ done
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export FZF_BASE=$HOME/.fzf/bin/fzf
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s '/home/jc/.rvm/scripts/rvm' ]] && source '/home/jc/.rvm/scripts/rvm'
