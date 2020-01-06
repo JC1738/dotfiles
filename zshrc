@@ -153,3 +153,9 @@ export FZF_BASE=$HOME/.fzf/bin/fzf
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+
+ip () {
+        echo "IPAddress: $1/32" | grep 'IPAddress' && whois $1 | grep 'OrgName' || true && whois $1 | grep 'CIDR' && whois $1 | grep 'Customer' || true && whois $1 | grep 'Organization' || true && whois $1 | grep 'OrgTechName' || true \
+       && whois $1 | grep 'country' || true && whois $1 | grep 'inetnum' || true
+}
