@@ -67,7 +67,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools zsh_reload)
+plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,6 +145,8 @@ done
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export FZF_BASE=$HOME/.fzf/bin/fzf
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -161,5 +163,7 @@ yp () {
 }
 
 ip () {
-        echo "IPAddress: $1/32" | grep 'IPAddress' && whois $1 | grep 'OrgName' || true && whois $1 | grep 'CIDR' && whois $1 | grep 'Customer' || true && whois $1 | grep 'Organization' || true && whois $1 | grep 'OrgTechName' || true
+        WHOIS=$(whois $1)
+        echo "IPAddress: $1/32" | grep 'IPAddress' && echo $WHOIS | grep 'OrgName' || true && echo $WHOIS | grep 'CIDR' && echo $WHOIS | grep 'Customer' || true && echo $WHOIS | grep 'Organization' || true && echo $WHOIS | grep 'OrgTechName' || true \
+       && echo $WHOIS | grep 'country' || true && echo $WHOIS | grep 'inetnum' || true
 }
