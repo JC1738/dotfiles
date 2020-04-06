@@ -76,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 PROMPT=$PROMPT'$(kube_ps1) '
 
+source $HOME/google-cloud-sdk/path.zsh.inc
+
+source $HOME/google-cloud-sdk/completion.zsh.inc
 
 #kubeoff by default, turn on by kubeon
 KUBE_PS1_ENABLED=false
