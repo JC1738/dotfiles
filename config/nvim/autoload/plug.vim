@@ -2238,203 +2238,203 @@ function! s:upgrade()
   let new = tmp . '/plug.vim'
 
   try
-    let out = s:system(printf('git clone --depth 1 %s %s', plug#shellescape(s:plug_src), plug#shellescape(tmp)))
-    if v:shell_error
-      return s:err('Error upgrading vim-plug: '. out)
-    endif
+    let out = s:system(printf('git clone --depth 1 %s %s', s:shellesc(s:plug_src), s:shellesc(tmp)))
+if v:shell_error
+return s:err('Error upgrading vim-plug: '. out)
+endif
 
-    if readfile(s:me) ==# readfile(new)
-      echo 'vim-plug is already up-to-date'
-      return 0
-    else
-      call rename(s:me, s:me . '.old')
-      call rename(new, s:me)
-      unlet g:loaded_plug
-      echo 'vim-plug has been upgraded'
-      return 1
-    endif
-  finally
-    silent! call s:rm_rf(tmp)
-  endtry
+if readfile(s:me) ==# readfile(new)
+echo 'vim-plug is already up-to-date'
+return 0
+else
+call rename(s:me, s:me . '.old')
+call rename(new, s:me)
+unlet g:loaded_plug
+echo 'vim-plug has been upgraded'
+return 1
+endif
+finally
+silent! call s:rm_rf(tmp)
+endtry
 endfunction
 
 function! s:upgrade_specs()
-  for spec in values(g:plugs)
-    let spec.frozen = get(spec, 'frozen', 0)
-  endfor
+for spec in values(g:plugs)
+let spec.frozen = get(spec, 'frozen', 0)
+endfor
 endfunction
 
 function! s:status()
-  call s:prepare()
-  call append(0, 'Checking plugins')
-  call append(1, '')
+call s:prepare()
+call append(0, 'Checking plugins')
+call append(1, '')
 
-  let ecnt = 0
-  let unloaded = 0
-  let [cnt, total] = [0, len(g:plugs)]
-  for [name, spec] in items(g:plugs)
-    let is_dir = isdirectory(spec.dir)
-    if has_key(spec, 'uri')
-      if is_dir
-        let [err, _] = s:git_validate(spec, 1)
-        let [valid, msg] = [empty(err), empty(err) ? 'OK' : err]
-      else
-        let [valid, msg] = [0, 'Not found. Try PlugInstall.']
-      endif
-    else
-      if is_dir
-        let [valid, msg] = [1, 'OK']
-      else
-        let [valid, msg] = [0, 'Not found.']
-      endif
-    endif
-    let cnt += 1
-    let ecnt += !valid
-    " `s:loaded` entry can be missing if PlugUpgraded
-    if is_dir && get(s:loaded, name, -1) == 0
-      let unloaded = 1
-      let msg .= ' (not loaded)'
-    endif
-    call s:progress_bar(2, repeat('=', cnt), total)
-    call append(3, s:format_message(valid ? '-' : 'x', name, msg))
-    normal! 2G
-    redraw
-  endfor
-  call setline(1, 'Finished. '.ecnt.' error(s).')
-  normal! gg
-  setlocal nomodifiable
-  if unloaded
-    echo "Press 'L' on each line to load plugin, or 'U' to update"
-    nnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
-    xnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
-  end
+let ecnt = 0
+let unloaded = 0
+let [cnt, total] = [0, len(g:plugs)]
+for [name, spec] in items(g:plugs)
+let is_dir = isdirectory(spec.dir)
+if has_key(spec, 'uri')
+if is_dir
+let [err, _] = s:git_validate(spec, 1)
+let [valid, msg] = [empty(err), empty(err) ? 'OK' : err]
+else
+let [valid, msg] = [0, 'Not found. Try PlugInstall.']
+endif
+else
+if is_dir
+let [valid, msg] = [1, 'OK']
+else
+let [valid, msg] = [0, 'Not found.']
+endif
+endif
+let cnt += 1
+let ecnt += !valid
+" `s:loaded` entry can be missing if PlugUpgraded
+if is_dir && get(s:loaded, name, -1) == 0
+let unloaded = 1
+let msg .= ' (not loaded)'
+endif
+call s:progress_bar(2, repeat('=', cnt), total)
+call append(3, s:format_message(valid ? '-' : 'x', name, msg))
+normal! 2G
+redraw
+endfor
+call setline(1, 'Finished. '.ecnt.' error(s).')
+normal! gg
+setlocal nomodifiable
+if unloaded
+echo "Press 'L' on each line to load plugin, or 'U' to update"
+nnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
+xnoremap <silent> <buffer> L :call <SID>status_load(line('.'))<cr>
+end
 endfunction
 
 function! s:extract_name(str, prefix, suffix)
-  return matchstr(a:str, '^'.a:prefix.' \zs[^:]\+\ze:.*'.a:suffix.'$')
+return matchstr(a:str, '^'.a:prefix.' \zs[^:]\+\ze:.*'.a:suffix.'$')
 endfunction
 
 function! s:status_load(lnum)
-  let line = getline(a:lnum)
-  let name = s:extract_name(line, '-', '(not loaded)')
-  if !empty(name)
-    call plug#load(name)
-    setlocal modifiable
-    call setline(a:lnum, substitute(line, ' (not loaded)$', '', ''))
-    setlocal nomodifiable
-  endif
+let line = getline(a:lnum)
+let name = s:extract_name(line, '-', '(not loaded)')
+if !empty(name)
+call plug#load(name)
+setlocal modifiable
+call setline(a:lnum, substitute(line, ' (not loaded)$', '', ''))
+setlocal nomodifiable
+endif
 endfunction
 
 function! s:status_update() range
-  let lines = getline(a:firstline, a:lastline)
-  let names = filter(map(lines, 's:extract_name(v:val, "[x-]", "")'), '!empty(v:val)')
-  if !empty(names)
-    echo
-    execute 'PlugUpdate' join(names)
-  endif
+let lines = getline(a:firstline, a:lastline)
+let names = filter(map(lines, 's:extract_name(v:val, "[x-]", "")'), '!empty(v:val)')
+if !empty(names)
+echo
+execute 'PlugUpdate' join(names)
+endif
 endfunction
 
 function! s:is_preview_window_open()
-  silent! wincmd P
-  if &previewwindow
-    wincmd p
-    return 1
-  endif
+silent! wincmd P
+if &previewwindow
+wincmd p
+return 1
+endif
 endfunction
 
 function! s:find_name(lnum)
-  for lnum in reverse(range(1, a:lnum))
-    let line = getline(lnum)
-    if empty(line)
-      return ''
-    endif
-    let name = s:extract_name(line, '-', '')
-    if !empty(name)
-      return name
-    endif
-  endfor
-  return ''
+for lnum in reverse(range(1, a:lnum))
+let line = getline(lnum)
+if empty(line)
+return ''
+endif
+let name = s:extract_name(line, '-', '')
+if !empty(name)
+return name
+endif
+endfor
+return ''
 endfunction
 
 function! s:preview_commit()
-  if b:plug_preview < 0
-    let b:plug_preview = !s:is_preview_window_open()
-  endif
+if b:plug_preview < 0
+let b:plug_preview = !s:is_preview_window_open()
+endif
 
-  let sha = matchstr(getline('.'), '^  \X*\zs[0-9a-f]\{7,9}')
-  if empty(sha)
-    return
-  endif
+let sha = matchstr(getline('.'), '^  \X*\zs[0-9a-f]\{7,9}')
+if empty(sha)
+return
+endif
 
-  let name = s:find_name(line('.'))
-  if empty(name) || !has_key(g:plugs, name) || !isdirectory(g:plugs[name].dir)
-    return
-  endif
+let name = s:find_name(line('.'))
+if empty(name) || !has_key(g:plugs, name) || !isdirectory(g:plugs[name].dir)
+return
+endif
 
-  if exists('g:plug_pwindow') && !s:is_preview_window_open()
-    execute g:plug_pwindow
-    execute 'e' sha
-  else
-    execute 'pedit' sha
-    wincmd P
-  endif
-  setlocal previewwindow filetype=git buftype=nofile nobuflisted modifiable
-  try
-    let [sh, shellcmdflag, shrd] = s:chsh(1)
-    let cmd = 'cd '.plug#shellescape(g:plugs[name].dir).' && git show --no-color --pretty=medium '.sha
-    if s:is_win
-      let [batchfile, cmd] = s:batchfile(cmd)
-    endif
-    execute 'silent %!' cmd
-  finally
-    let [&shell, &shellcmdflag, &shellredir] = [sh, shellcmdflag, shrd]
-    if s:is_win
-      call delete(batchfile)
-    endif
-  endtry
-  setlocal nomodifiable
-  nnoremap <silent> <buffer> q :q<cr>
-  wincmd p
+if exists('g:plug_pwindow') && !s:is_preview_window_open()
+execute g:plug_pwindow
+execute 'e' sha
+else
+execute 'pedit' sha
+wincmd P
+endif
+setlocal previewwindow filetype=git buftype=nofile nobuflisted modifiable
+try
+let [sh, shellcmdflag, shrd] = s:chsh(1)
+let cmd = 'cd '.plug#shellescape(g:plugs[name].dir).' && git show --no-color --pretty=medium '.sha
+if s:is_win
+let [batchfile, cmd] = s:batchfile(cmd)
+endif
+execute 'silent %!' cmd
+finally
+let [&shell, &shellcmdflag, &shellredir] = [sh, shellcmdflag, shrd]
+if s:is_win
+call delete(batchfile)
+endif
+endtry
+setlocal nomodifiable
+nnoremap <silent> <buffer> q :q<cr>
+wincmd p
 endfunction
 
 function! s:section(flags)
-  call search('\(^[x-] \)\@<=[^:]\+:', a:flags)
+call search('\(^[x-] \)\@<=[^:]\+:', a:flags)
 endfunction
 
 function! s:format_git_log(line)
-  let indent = '  '
-  let tokens = split(a:line, nr2char(1))
-  if len(tokens) != 5
-    return indent.substitute(a:line, '\s*$', '', '')
-  endif
-  let [graph, sha, refs, subject, date] = tokens
-  let tag = matchstr(refs, 'tag: [^,)]\+')
-  let tag = empty(tag) ? ' ' : ' ('.tag.') '
-  return printf('%s%s%s%s%s (%s)', indent, graph, sha, tag, subject, date)
+let indent = '  '
+let tokens = split(a:line, nr2char(1))
+if len(tokens) != 5
+return indent.substitute(a:line, '\s*$', '', '')
+endif
+let [graph, sha, refs, subject, date] = tokens
+let tag = matchstr(refs, 'tag: [^,)]\+')
+let tag = empty(tag) ? ' ' : ' ('.tag.') '
+return printf('%s%s%s%s%s (%s)', indent, graph, sha, tag, subject, date)
 endfunction
 
 function! s:append_ul(lnum, text)
-  call append(a:lnum, ['', a:text, repeat('-', len(a:text))])
+call append(a:lnum, ['', a:text, repeat('-', len(a:text))])
 endfunction
 
 function! s:diff()
-  call s:prepare()
-  call append(0, ['Collecting changes ...', ''])
-  let cnts = [0, 0]
-  let bar = ''
-  let total = filter(copy(g:plugs), 's:is_managed(v:key) && isdirectory(v:val.dir)')
-  call s:progress_bar(2, bar, len(total))
-  for origin in [1, 0]
-    let plugs = reverse(sort(items(filter(copy(total), (origin ? '' : '!').'(has_key(v:val, "commit") || has_key(v:val, "tag"))'))))
-    if empty(plugs)
-      continue
-    endif
-    call s:append_ul(2, origin ? 'Pending updates:' : 'Last update:')
-    for [k, v] in plugs
-      let range = origin ? '..origin/'.v.branch : 'HEAD@{1}..'
-      let cmd = 'git log --graph --color=never '.join(map(['--pretty=format:%x01%h%x01%d%x01%s%x01%cr', range], 'plug#shellescape(v:val)'))
+call s:prepare()
+call append(0, ['Collecting changes ...', ''])
+let cnts = [0, 0]
+let bar = ''
+let total = filter(copy(g:plugs), 's:is_managed(v:key) && isdirectory(v:val.dir)')
+call s:progress_bar(2, bar, len(total))
+for origin in [1, 0]
+let plugs = reverse(sort(items(filter(copy(total), (origin ? '' : '!').'(has_key(v:val, "commit") || has_key(v:val, "tag"))'))))
+if empty(plugs)
+continue
+endif
+call s:append_ul(2, origin ? 'Pending updates:' : 'Last update:')
+for [k, v] in plugs
+let range = origin ? '..origin/'.v.branch : 'HEAD@{1}..'
+      let cmd = 'git log --graph --color=never '.join(map(['--pretty=format:%x01%h%x01%d%x01%s%x01%cr', range], 's:shellesc(v:val)'))
       if has_key(v, 'rtp')
-        let cmd .= ' -- '.plug#shellescape(v.rtp)
+        let cmd .= ' -- '.s:shellesc(v.rtp)
       endif
       let diff = s:system_chomp(cmd, v.dir)
       if !empty(diff)

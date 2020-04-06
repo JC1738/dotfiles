@@ -93,6 +93,7 @@ Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'AndrewRadev/splitjoin.vim'               " Split or join Structs
 Plug 'killphi/vim-legend'                      " Mark up code coverage
 Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
+"Plug 'valloric/youcompleteme'                  " Auto complete recommended for python
 Plug 'python-mode/python-mode', { 'branch': 'develop' } " Python
 Plug 'tmhedberg/SimpylFold'                    " Folding for python
 
@@ -293,6 +294,18 @@ let g:pymode_python = 'python3'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_on_fly = 1
+
+
+"----------------------------------------------
+" Plugin: youcompleteme
+"----------------------------------------------
+"let g:ycm_python_interpreter_path = ''
+"let g:ycm_python_sys_path = []
+"let g:ycm_extra_conf_vim_data = [
+"  \  'g:ycm_python_interpreter_path',
+"  \  'g:ycm_python_sys_path'
+"  \]
+"let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 
 
 "----------------------------------------------
@@ -654,7 +667,7 @@ AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'
 AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
-AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-4.0/lib/libclang-4.0.so.1")
+AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/local/opt/llvm/lib/libclang.dylib")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")

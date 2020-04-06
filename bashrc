@@ -197,9 +197,6 @@ alias sudo='sudo '
 # git diff
 export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 
@@ -259,6 +256,12 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then
 		source /etc/profile.d/vte.sh;
 	fi
 fi # Ubuntu Budgie END
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/path.bash.inc' ]; then . '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/completion.bash.inc' ]; then . '/home/jc/Documents/git/rp-smashing/google-cloud-sdk/completion.bash.inc'; fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

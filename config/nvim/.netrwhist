@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/sebdah/go/src/github.com/saltside/sms-service/source/gateway'
 let g:netrw_dirhist_2='/Users/JC/go/src/github.com/opentable/ot-sous-server-dev'
+let g:netrw_dirhist_3='/Users/jc/Documents/git/python-test'

@@ -4,6 +4,9 @@
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# python paths
+export PATH=$PATH:/Users/jc/Library/Python/3.7/bin
+
 # colors
 alias ls='ls -G'
 
