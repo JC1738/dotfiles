@@ -172,6 +172,10 @@ ip () {
        && echo $WHOIS | grep 'country' || true && echo $WHOIS | grep 'inetnum' || true
 }
 
+batdiff () {
+    git diff --name-only --diff-filter=d 2>/dev/null | xargs bat --diff
+}
+
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 source "/etc/profile.d/rvm.sh"
