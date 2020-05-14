@@ -146,7 +146,7 @@ if has('nvim')
     " example:
     " pip3 install -U neovim
     let g:python_host_prog = '/usr/local/bin/python2'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " Enable mouse if possible
@@ -383,6 +383,7 @@ command! -nargs=* AutocmdFT autocmd AutoGroup FileType <args>
 "----------------------------------------------
 if has('nvim')
     " Enable deoplete on startup
+    let g:deoplete#sources#jedi#python_path = 'python3'
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#auto_complete_delay = 0
     let g:deoplete#auto_complete_start_length = 1

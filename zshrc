@@ -171,3 +171,7 @@ ip () {
         echo "IPAddress: $1/32" | grep 'IPAddress' && echo $WHOIS | grep 'OrgName' || true && echo $WHOIS | grep 'CIDR' && echo $WHOIS | grep 'Customer' || true && echo $WHOIS | grep 'Organization' || true && echo $WHOIS | grep 'OrgTechName' || true \
        && echo $WHOIS | grep 'country' || true && echo $WHOIS | grep 'inetnum' || true
 }
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+source "/etc/profile.d/rvm.sh"
