@@ -178,4 +178,6 @@ batdiff () {
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/jc/Documents/git/diff-so-fancy
+
 source "/etc/profile.d/rvm.sh"
