@@ -211,7 +211,6 @@ export FZF_BASE=$HOME/.fzf/bin/fzf
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-source "/etc/profile.d/rvm.sh"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 #kubeoff by default, turn on by kubeon

@@ -20,6 +20,7 @@ export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"
 export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib/pkgconfig"
 
 
+source "/etc/profile.d/rvm.sh"
 
 # OS
 export OS_LOADED=LINUX
