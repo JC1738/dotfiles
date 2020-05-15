@@ -109,6 +109,43 @@ function ka(){
 export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
 export PATH=$PATH:~/.kube/plugins/jordanwilson230
 
+echo "$(uname)"
+
+if [ "$(uname)" = "Darwin" ]; then
+    # Do something under Mac OS X platform
+		export MYOS=Mac
+
+		files=(bashrc_mac)
+		path="$HOME/Documents/git/dotfiles/mac/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+    # Do something under GNU/Linux platform
+		export MYOS=Linux
+
+		files=(bashrc_linux)
+		path="$HOME/Documents/git/dotfiles/linux/"
+		for file in ${files[@]}
+		do
+			file_to_load=$path$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+fi
+
 
 # Stick private information in private repo
 files=(bashrc_private)
