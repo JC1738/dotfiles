@@ -1,7 +1,7 @@
 #!bin/zsh
 
 # python paths
-export PATH="$PATH:/Users/jcastillo/Library/Python/2.7/bin"
+export PATH="/Users/jcastillo/Library/Python/2.7/bin:$PATH"
 
 
 # colors

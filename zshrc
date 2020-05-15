@@ -105,10 +105,10 @@ if [ "$(uname)" = "Darwin" ]; then
 		export MYOS=Mac
 
 		files=(bashrc_mac)
-		path="$HOME/Documents/git/dotfiles/mac/"
+		pathof="$HOME/Documents/git/dotfiles/mac/"
 		for file in ${files[@]}
 		do
-			file_to_load=$path$file
+			file_to_load=$pathof$file
 			if [ -f "$file_to_load" ];
 			then
         . $file_to_load
@@ -122,10 +122,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 		export MYOS=Linux
 
 		files=(bashrc_linux)
-		path="$HOME/Documents/git/dotfiles/linux/"
+		pathof="$HOME/Documents/git/dotfiles/linux/"
 		for file in ${files[@]}
 		do
-			file_to_load=$path$file
+			file_to_load=$pathof$file
 			if [ -f "$file_to_load" ];
 			then
         . $file_to_load
