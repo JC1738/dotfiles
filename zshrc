@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -196,11 +196,11 @@ export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/Documents/git/diff-so-fancy:$PATH"
-export PATH="$HOME/.kube/plugins/jordanwilson230:$PATH"
+export PATH="$PATH:/usr/local/opt/llvm/bin"
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
+export PATH="$PATH:$HOME/.kube/plugins/jordanwilson230"
 
 source "$HOME/google-cloud-sdk/path.zsh.inc"
 source "$HOME/google-cloud-sdk/completion.zsh.inc"
@@ -213,6 +213,6 @@ export FZF_BASE=$HOME/.fzf/bin/fzf
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin"
 
-#kubeoff by default, turn on by kubeon
+# kubeoff by default, turn on by kubeon
 PROMPT=$PROMPT'$(kube_ps1) '
-KUBE_PS1_ENABLED=false
+KUBE_PS1_ENABLED=off
