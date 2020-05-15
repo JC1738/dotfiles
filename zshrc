@@ -161,9 +161,9 @@ export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
-export PATH="$PATH:~/.kube/plugins/jordanwilson230"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/Documents/git/diff-so-fancy:$PATH"
+export PATH="$HOME/.kube/plugins/jordanwilson230:$PATH"
 
 source "$HOME/google-cloud-sdk/path.zsh.inc"
 source "$HOME/google-cloud-sdk/completion.zsh.inc"
