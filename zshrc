@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -20,7 +20,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -41,7 +41,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -71,16 +71,7 @@ plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby pyt
 
 source $ZSH/oh-my-zsh.sh
 
-
 # User configuration
-PROMPT=$PROMPT'$(kube_ps1) '
-
-source $HOME/google-cloud-sdk/path.zsh.inc
-
-source $HOME/google-cloud-sdk/completion.zsh.inc
-
-#kubeoff by default, turn on by kubeon
-KUBE_PS1_ENABLED=false
 
 # FIND ALL
 function p(){
@@ -106,8 +97,6 @@ function ka(){
     echo -e "\n"
 }
 
-export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
-export PATH=$PATH:~/.kube/plugins/jordanwilson230
 
 echo "$(uname)"
 
@@ -186,18 +175,7 @@ done
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export FZF_BASE=$HOME/.fzf/bin/fzf
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 yp () {
        ypmatch $1 passwd.byname
@@ -213,8 +191,29 @@ batdiff () {
     git diff --name-only --diff-filter=d 2>/dev/null | xargs bat --diff
 }
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/Documents/git/diff-so-fancy
 
+export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/Documents/git/diff-so-fancy:$PATH"
+export PATH="$HOME/.kube/plugins/jordanwilson230:$PATH"
+
+source "$HOME/google-cloud-sdk/path.zsh.inc"
+source "$HOME/google-cloud-sdk/completion.zsh.inc"
+
+# FZF
+export FZF_BASE=$HOME/.fzf/bin/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 source "/etc/profile.d/rvm.sh"
+export PATH="$PATH:$HOME/.rvm/bin"
+
+#kubeoff by default, turn on by kubeon
+PROMPT=$PROMPT'$(kube_ps1) '
+KUBE_PS1_ENABLED=false
