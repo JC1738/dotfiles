@@ -67,7 +67,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
+plugins=(git git-prompt gcloud kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -201,9 +201,6 @@ export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
 export PATH="$PATH:$HOME/.kube/plugins/jordanwilson230"
-
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
 # FZF
 export FZF_BASE=$HOME/.fzf/bin/fzf
