@@ -3,23 +3,30 @@
 
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH=$GOPATH:$GOBIN:$PATH
+export PATH="$PATH:$GOPATH:$GOBIN"
 
-export PATH=$PATH:$HOME/Apps/GoLand-2017.3.2/bin
-export PATH=$PATH:$HOME/Apps/liquibase-3.4.2
+# export PATH=$PATH:$HOME/Apps/GoLand-2017.3.2/bin
+# export PATH=$PATH:$HOME/Apps/liquibase-3.4.2
 
 export PATH=$PATH:$HOME/.local/bin
 
 # homebrew
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+# eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # brew install gcc
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"
-export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib/pkgconfig"
+# export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
+# export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"
+# export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib/pkgconfig"
 
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+source "/etc/profile.d/rvm.sh"
 
 # OS
 export OS_LOADED=LINUX

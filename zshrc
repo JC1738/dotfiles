@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="sorin"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -20,7 +20,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -41,7 +41,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -67,20 +67,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
+plugins=(git git-prompt gcloud kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
-
 # User configuration
-PROMPT=$PROMPT'$(kube_ps1) '
-
-source $HOME/google-cloud-sdk/path.zsh.inc
-
-source $HOME/google-cloud-sdk/completion.zsh.inc
-
-#kubeoff by default, turn on by kubeon
-KUBE_PS1_ENABLED=false
 
 # FIND ALL
 function p(){
@@ -106,8 +97,43 @@ function ka(){
     echo -e "\n"
 }
 
-export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
-export PATH=$PATH:~/.kube/plugins/jordanwilson230
+
+echo "$(uname)"
+
+if [ "$(uname)" = "Darwin" ]; then
+    # Do something under Mac OS X platform
+		export MYOS=Mac
+
+		files=(bashrc_mac)
+		pathof="$HOME/Documents/git/dotfiles/mac/"
+		for file in ${files[@]}
+		do
+			file_to_load=$pathof$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+    # Do something under GNU/Linux platform
+		export MYOS=Linux
+
+		files=(bashrc_linux)
+		pathof="$HOME/Documents/git/dotfiles/linux/"
+		for file in ${files[@]}
+		do
+			file_to_load=$pathof$file
+			if [ -f "$file_to_load" ];
+			then
+        . $file_to_load
+        echo "loaded $file_to_load"
+			fi
+		done
+
+fi
 
 
 # Stick private information in private repo
@@ -149,18 +175,7 @@ done
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export FZF_BASE=$HOME/.fzf/bin/fzf
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 yp () {
        ypmatch $1 passwd.byname
@@ -171,3 +186,30 @@ ip () {
         echo "IPAddress: $1/32" | grep 'IPAddress' && echo $WHOIS | grep 'OrgName' || true && echo $WHOIS | grep 'CIDR' && echo $WHOIS | grep 'Customer' || true && echo $WHOIS | grep 'Organization' || true && echo $WHOIS | grep 'OrgTechName' || true \
        && echo $WHOIS | grep 'country' || true && echo $WHOIS | grep 'inetnum' || true
 }
+
+batdiff () {
+    git diff --name-only --diff-filter=d 2>/dev/null | xargs bat --diff
+}
+
+
+export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+export PATH="$PATH:/usr/local/opt/llvm/bin"
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
+export PATH="$PATH:$HOME/.kube/plugins/jordanwilson230"
+
+# FZF
+export FZF_BASE=$HOME/.fzf/bin/fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# kubeoff by default, turn on by kubeon
+PROMPT=$PROMPT'$(kube_ps1) '
+KUBE_PS1_ENABLED=off

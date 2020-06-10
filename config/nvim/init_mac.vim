@@ -145,8 +145,8 @@ if has('nvim')
     " install the neovim package for these binaries separately like this for
     " example:
     " pip3 install -U neovim
-    let g:python_host_prog = '/usr/local/bin/python2'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " Enable mouse if possible
@@ -383,16 +383,17 @@ command! -nargs=* AutocmdFT autocmd AutoGroup FileType <args>
 "----------------------------------------------
 if has('nvim')
     " Enable deoplete on startup
+    let g:deoplete#sources#jedi#python_path = 'python3'
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#auto_complete_delay = 0
-    let g:deoplete#auto_complete_start_length = 1
     let g:deoplete#auto_completion_start_length = 1
     let g:deoplete#enable_camel_case = 1
     let g:deoplete#enable_ignore_case = 1
-    let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#file#enable_buffer_path = 1
-    let g:deoplete#max_list = 10000
+    call deoplete#custom#option({
+    \ 'auto_complete_delay': 200,
+    \ 'smart_case': v:true,
+    \ 'refresh_always': v:true,
+    \ 'max_list': 10000,
+    \ })
 endif
 
 "----------------------------------------------
