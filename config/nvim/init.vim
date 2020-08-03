@@ -1,1 +1,0 @@
-./init_mac.vim
