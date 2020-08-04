@@ -674,14 +674,13 @@ AutocmdFT go let g:deoplete#sources#go#cgo = 1
 AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-10/lib/libclang.so")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
-" AutocmdFT go let g:deoplete#sources#go#gocode_binary = $GOPATH.'bin/gocode'
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")
 AutocmdFT go let g:deoplete#sources#go#package_dot = 1
 AutocmdFT go let g:deoplete#sources#go#on_event = 1
 AutocmdFT go let g:deoplete#sources#go#pointer = 1
 AutocmdFT go let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 AutocmdFT go let g:deoplete#sources#go#use_cache = 1
-AutocmdFT go call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+" AutocmdFT go call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 "----------------------------------------------
 " Language: Golang
 "----------------------------------------------
