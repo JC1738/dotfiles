@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="sorin"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -67,7 +67,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
+plugins=(git git-prompt gcloud kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -196,14 +196,11 @@ export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/Documents/git/diff-so-fancy:$PATH"
-export PATH="$HOME/.kube/plugins/jordanwilson230:$PATH"
-
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
+export PATH="$PATH:/usr/local/opt/llvm/bin"
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
+export PATH="$PATH:$HOME/.kube/plugins/jordanwilson230"
 
 # FZF
 export FZF_BASE=$HOME/.fzf/bin/fzf
@@ -213,6 +210,6 @@ export FZF_BASE=$HOME/.fzf/bin/fzf
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 export PATH="$PATH:$HOME/.rvm/bin"
 
-#kubeoff by default, turn on by kubeon
+# kubeoff by default, turn on by kubeon
 PROMPT=$PROMPT'$(kube_ps1) '
-KUBE_PS1_ENABLED=false
+KUBE_PS1_ENABLED=off
