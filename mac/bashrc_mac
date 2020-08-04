@@ -11,4 +11,6 @@ alias ls='ls -G'
 export OS_LOADED=MAC
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/go@1.13/bin:$PATH"
+export PATH="/usr/local/opt/python3/bin:$PATH"
+export PATH="/usr/local/opt/python/bin:$PATH"
 export GOPATH="$HOME/go"
