@@ -1,7 +1,10 @@
 #!bin/zsh
 
-# python paths
-export PATH="/Users/jcastillo/Library/Python/2.7/bin:$PATH"
+# brew install llvm
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+export PATH="$PATH:/usr/local/opt/llvm/bin"
 
 
 # colors
