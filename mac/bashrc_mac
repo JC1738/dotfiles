@@ -9,3 +9,6 @@ alias ls='ls -G'
 
 # OS
 export OS_LOADED=MAC
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/go@1.13/bin:$PATH"
+export GOPATH="/Users/jcastillo/go/bin"
