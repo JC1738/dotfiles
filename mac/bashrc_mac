@@ -1,7 +1,10 @@
 #!bin/zsh
 
-# python paths
-export PATH="/Users/jcastillo/Library/Python/2.7/bin:$PATH"
+# brew install llvm
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+export PATH="$PATH:/usr/local/opt/llvm/bin"
 
 
 # colors
@@ -9,3 +12,8 @@ alias ls='ls -G'
 
 # OS
 export OS_LOADED=MAC
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/go@1.13/bin:$PATH"
+export PATH="/usr/local/opt/python3/bin:$PATH"
+export PATH="/usr/local/opt/python/bin:$PATH"
+export GOPATH="$HOME/go"

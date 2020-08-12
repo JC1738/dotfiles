@@ -1,1 +1,1 @@
-./init_linux.vim
+init_mac.vim
