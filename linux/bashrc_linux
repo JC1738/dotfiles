@@ -4,6 +4,7 @@
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH="$PATH:$GOPATH:$GOBIN"
+export PATH="/usr/local/go/bin:$PATH"
 
 # export PATH=$PATH:$HOME/Apps/GoLand-2017.3.2/bin
 # export PATH=$PATH:$HOME/Apps/liquibase-3.4.2
@@ -25,6 +26,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+export USE_BAZEL_VERSION=0.26.1
 
 source "/etc/profile.d/rvm.sh"
 
