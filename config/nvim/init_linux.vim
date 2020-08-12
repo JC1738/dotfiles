@@ -413,6 +413,9 @@ let g:airline#extensions#tabline#enabled = 1
 " what is shown in the tabline at all times.
 let g:airline#extensions#tabline#show_tabs = 0
 
+" Show buffer numbers
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 " Enable powerline fonts.
 let g:airline_powerline_fonts = 1
 
