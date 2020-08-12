@@ -803,9 +803,12 @@ let g:go_test_prepend_name = 1
 
 " gometalinter configuration
 let g:go_metalinter_autosave = 0
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_command = "--config /home/jc/go/src/github.com/opentable/sous/gometalinter.json"
+let g:go_metalinter_autosave_enabled = ['govet', 'golint']
+let g:go_metalinter_enabled = ["govet", "golint", "errcheck", "staticcheck", "gosimple", "deadcode"]
 let g:go_metalinter_deadline = "10s"
+let g:go_metalinter_command='golangci-lint'
+
+
 
 " Set whether the JSON tags should be snakecase or camelcase.
 let g:go_addtags_transform = "snakecase"
