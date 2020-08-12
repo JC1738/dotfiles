@@ -57,7 +57,6 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'ervandew/supertab'
 Plug 'janko-m/vim-test'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-Plug 'tpope/vim-unimpaired'
 
 
 " Vim only plugins
@@ -73,6 +72,7 @@ Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
 Plug 'fatih/vim-go'                            " Go support
+Plug 'fatih/gomodifytags'                      " Go auto tag structs
 Plug 'vim-syntastic/syntastic'
 Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'tpope/vim-rails'                         " Rails
@@ -97,6 +97,7 @@ Plug 'thanethomson/vim-jenkinsfile'            " Mark up jenkins syntax
 "Plug 'valloric/youcompleteme'                  " Auto complete recommended for python
 Plug 'python-mode/python-mode', { 'branch': 'develop' } " Python
 Plug 'tmhedberg/SimpylFold'                    " Folding for python
+Plug 'tpope/vim-unimpaired'                    " navigate quickfix
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
