@@ -57,6 +57,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'ervandew/supertab'
 Plug 'janko-m/vim-test'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'tpope/vim-unimpaired'
 
 
 " Vim only plugins
@@ -716,7 +717,7 @@ au FileType go nmap <leader>gor <Plug>(go-run)
 au FileType go nmap <leader>gf :GoFmt<cr>
 au FileType go nmap <leader>t :GoTestFunc<cr>
 au FileType go nmap <leader>gl :GoMetaLinter<cr>
-
+au FileType go nmap <leader>gs <Plug>(go-callstack)
 
 "inoremap <Leader>a <Esc>:Rg <C-R><C-W><CR>
 "nnoremap <Leader>a :Rg <C-R><C-W><CR>
