@@ -148,7 +148,7 @@ if has('nvim')
     " example:
     " pip3 install -U neovim
     let g:python_host_prog = '/usr/bin/python2'
-    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python3_host_prog = '/usr/local/opt/python/bin/python3'
 endif
 
 " Enable mouse if possible
@@ -676,7 +676,7 @@ AutocmdFT go call deoplete#custom#source('go', 'matchers', ['matcher_full_fuzzy'
 AutocmdFT go call deoplete#custom#source('go', 'sorters', [])
 AutocmdFT go let g:deoplete#sources#go#align_class = 1
 AutocmdFT go let g:deoplete#sources#go#cgo = 1
-AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/lib/llvm-10/lib/libclang.so")
+AutocmdFT go let g:deoplete#sources#go#cgo#libclang_path= expand("/usr/local/opt/llvm/lib/libclang.dylib")
 AutocmdFT go let g:deoplete#sources#go#cgo#sort_algo = 'alphabetical'
 AutocmdFT go let g:deoplete#sources#go#gocode_binary = globpath($GOPATH,"/bin/gocode")
 AutocmdFT go let g:deoplete#sources#go#json_directory = globpath($NVIM_HOME,"/plugged/deoplete-go/data/json/*/").expand("$GOOS")."_".expand("$GOARCH")
