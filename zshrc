@@ -193,14 +193,10 @@ batdiff () {
 
 
 export HELM_HOME=$HOME/Documents/git/dotfiles/config/helm_plugins
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
-
-export PATH="$PATH:/usr/local/opt/llvm/bin"
 export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
-export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:$HOME/Documents/git/diff-so-fancy"
 export PATH="$PATH:$HOME/.kube/plugins/jordanwilson230"
+export PATH="$PATH:$HOME/go/bin"
 
 # FZF
 export FZF_BASE=$HOME/.fzf/bin/fzf
