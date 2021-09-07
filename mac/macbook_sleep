@@ -1,0 +1,75 @@
+#!/bin/sh
+# script to change the sleep mode of an OS X machine
+
+usage () {
+    echo "supported sleep modes:"
+    echo "    sleep"
+    echo "    safesleep"
+    echo "    hibernate"
+    echo "    secure"
+    echo "    insecure"
+    echo "    current"
+    echo
+    echo "sleep (or old-style sleep) does not back up memory to disk. this is"
+    echo "useful if you are running out of hard drive space, but will eat"
+    echo "more battery and if the system runs out of power, the current state"
+    echo "is lost."
+    echo
+    echo "safesleep backs up memory to persistent storage, taking as much disk"
+    echo "space as the system has memory. this uses more disk space and more"
+    echo "battery, as memory is powered during sleep. If the battery is"
+    echo "exhausted, the system will hibernate."
+    echo
+    echo "hibernate writes memory to persistent storage, and powers down the"
+    echo "machine. the sleep image takes up as much space as the system has"
+    echo "memory. While sleeps/wakes are slower, battery life is much improved"
+    echo "as memory is not powered during sleep."
+    echo
+    echo "secure mode destroys the file vault key on standby, requiring the"
+    echo "password to be entered on wake. insecure mode retains the file "
+    echo "vault key on wake."
+    echo
+    echo "current displays the current settings."
+    exit 1
+}
+
+status () {
+    if [ "$?" = "0" ]; then
+        echo "state change to $1 successful"
+    else
+        echo "state change to $1 unsuccessful"
+    fi
+}
+
+if [ -z "$1" ]; then
+    usage
+elif [ "$1" = "sleep" ]; then
+    sudo pmset hibernatemode 0
+    status $1
+elif [ "$1" = "safesleep" ]; then 
+    sudo pmset hibernatemode 3
+    status $1
+elif [ "$1" = "hibernate" ]; then
+    sudo pmset hibernatemode 25
+    status $1
+elif [ "$1" = "current" ]; then
+    hibernatemode="$(pmset -g | grep hibernatemode | awk '{ print $2 ; }')"
+    if [ "${hibernatemode}" = "0" ]; then
+        echo "sleep"
+    elif [ "${hibernatemode}" = "3" ]; then
+        echo "safesleep"
+    elif [ "${hibernatemode}" = "25" ]; then
+        echo "hibernate"
+    else
+        echo "unknown"
+    fi
+elif [ "$1" = "secure" ]; then
+    sudo pmset destroyfvkeyonstandby 1
+    status $1
+elif [ "$1" = "insecure" ]; then
+    sudo pmset destroyfvkeyonstandby 0
+    status $1
+else
+    usage
+fi
+
