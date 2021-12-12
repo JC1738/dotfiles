@@ -67,7 +67,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt gcloud kube-ps1 kubectl helm fzf node bundler osx rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z zsh_reload)
+plugins=(git git-prompt gcloud kube-ps1 kubectl helm fzf node bundler macos rake ruby python golang tmux vi-mode zsh-navigation-tools fancy-ctrl-z)
 
 source $ZSH/oh-my-zsh.sh
 
